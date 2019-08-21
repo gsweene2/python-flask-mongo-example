@@ -7,10 +7,12 @@ app = Flask(__name__)
 
 usr = os.environ['MONGO_DB_USER']
 pwd = os.environ['MONGO_DB_PASS']
+mongo_db_name = os.environ['MONGO_DB_NAME']
+mongo_collection_name = os.environ['MONGO_COLLECTION_NAME']
 
 client = pymongo.MongoClient("mongodb+srv://" + usr + ":" + pwd + "@firstcluster-obuqd.mongodb.net/test?retryWrites=true&w=majority")
-db = client['SampleDatabase']
-collection = db['SampleCollection']
+db = client[mongo_db_name]
+collection = db[mongo_collection_name]
 
 @app.route("/", methods=['POST'])
 def insert_document():
